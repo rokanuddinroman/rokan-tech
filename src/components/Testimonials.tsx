@@ -1,5 +1,6 @@
 import useData from "@/hooks/useData";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export const Testimonials = () => {
@@ -31,9 +32,14 @@ export const Testimonials = () => {
           People are loving my templates, here are some comment
         </p>
         {/* ----------Update Button Text here---------- */}
-        <button className="bg-[#E73621] rounded-full h-[40px] px-6 text-[#020202] font-[500] mt-6">
-          Get Linkup -&gt;
-        </button>
+        <Link
+          target="_blank"
+          href="https://www.buymeacoffee.com/rokanuddin/e/173543"
+        >
+          <button className="bg-[#E73521] rounded-full h-[40px] px-6 text-[#020202] font-[500] mt-6">
+            Get Linkup -&gt;
+          </button>
+        </Link>
       </div>
       <div className="gap-4 flex flex-col">
         {testimonials.map((item) => (

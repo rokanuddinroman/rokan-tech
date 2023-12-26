@@ -7,98 +7,37 @@
 @layer base {
   :root {
     --radius: 0.5rem;
-    --background: #020202;
-    --foreground: 210 40% 98%;
+    --background: hsl(0, 0%, 1%, 0.5);
+    --foreground: hsl(210 40% 98%);
 
     --card: #191919;
-    --card-foreground: 210 40% 98%;
+    --card-foreground: hsl(210 40% 98%);
 
-    --popover: 0, 0, 0, 0.6;
-    --popover-foreground: 210 40% 98%;
+    --popover: hsl(0, 0, 0, 0.6);
+    --popover-foreground: hsl(210 40% 98%);
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: hsl(210 40% 98%);
+    --primary-foreground: hsl(222.2 47.4% 11.2%);
 
+    /* The red accent color is this | Change down here */
     --styled: #e73521;
-    --styled-foreground: #ac2516;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: hsl(217.2 32.6% 17.5%);
+    --secondary-foreground: hsl(210 40% 98%);
 
     --muted: #1e2a3b;
-    --muted-foreground: 0, 0%, 90%;
+    --muted-foreground: hsl(0, 0%, 90%);
 
-    --accent: 0, 0%, 27%, 0.4;
-    --accent-foreground: 210 40% 98%;
+    --accent: hsl(0, 0%, 27%, 0.4);
+    --accent-foreground: hsl(210 40% 98%);
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: hsl(0 62.8% 30.6%);
+    --destructive-foreground: hsl(210 40% 98%);
 
-    --border: 270, 2%, 56%, 0.2;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    /* --radius: 0.5rem;
-    --background: #161616;
-    --foreground: 210 40% 98%;
-
-    --card: #191919;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 0, 0, 0, 0.6;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --styled: #e73521;
-    --styled-foreground: #ac2516;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: #1e2a3b;
-    --muted-foreground: 0, 0%, 90%;
-
-    --accent: 0, 0%, 27%, 0.4;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 270, 2%, 56%, 0.2;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%; */
+    --border: hsl(270, 2%, 56%, 0.2);
+    --input: hsl(217.2 32.6% 17.5%);
+    --ring: hsl(212.7 26.8% 83.9%, 0.5);
   }
-
-  /* .dark {
-    --background: #161616;
-    --foreground: 210 40% 98%;
-
-    --card: #191919;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  } */
 }
 
 @layer base {
@@ -120,9 +59,21 @@
 }
 
 body {
-  /* background-color: #02070d; */
   background-color: #020202;
 }
+
+/* --------------- Fonts --------------- */
+
+.manrope {
+  font-family: "Manrope", sans-serif;
+}
+
+.grotesk {
+  font-family: "Clash Grotesk", sans-serif;
+  text-wrap: balance;
+}
+
+/* --------------- Cursor style --------------- */
 
 .circle {
   position: fixed;
@@ -150,14 +101,7 @@ body {
   margin: auto;
 }
 
-.manrope {
-  font-family: "Manrope", sans-serif;
-}
-
-.grotesk {
-  font-family: "Clash Grotesk", sans-serif;
-  text-wrap: balance;
-}
+/* --------------- Topbar(marquee) style --------------- */
 
 .wrapper {
   max-width: 100%;
@@ -189,6 +133,8 @@ body {
   }
 }
 
+/* --------------- Iframe(work page) style --------------- */
+
 .holds-the-iframe {
   background: url(https://i.pinimg.com/originals/49/23/29/492329d446c422b0483677d0318ab4fa.gif)
     center center no-repeat;
@@ -199,6 +145,8 @@ body {
   -webkit-background-clip: text;
   -moz-background-clip: text;
 }
+
+/* --------------- Dock style --------------- */
 
 .dock-icon {
   background: linear-gradient(180deg, #656565, #020202), #242424;
@@ -216,20 +164,6 @@ body {
     ),
     #242424; */
   background-blend-mode: soft-light, normal, soft-light, normal;
-}
-
-.hero-light-effect {
-  /* background-image: url(/assets/light.svg);
-  background-position: center;
-  background-repeat: no-repeat; */
-  /* position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(159, 159, 159, 0.3);
-  top: 0;
-  left: 0;
-  filter: blur(250px);
-  pointer-events: none; */
 }
 
 .card-page-thumbnail {
@@ -601,7 +535,7 @@ body {
   );
 }
 
-/* link animation */
+/* ------------- Link animation style ------------ */
 
 .underline {
   --line: #0f0f0f;
@@ -645,4 +579,20 @@ body {
   --stroke-duration: 0.3s;
   --stroke-easing: cubic-bezier(0.3, 1.5, 0.5, 1);
   --stroke-delay: 0.195s;
+}
+
+/* ----------- Custom scrollbar --------- */
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #060606;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #444444;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }

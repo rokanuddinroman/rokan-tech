@@ -64,7 +64,7 @@ const SocialSection = {
     "Master the art of creating cool ui with quick tips and tricks to boost your efficiency.",
   buttonLogo: <InstagramLogo size={18} className="mr-1" weight="bold" />,
   buttonText: "Instagram",
-  buttonURL: "",
+  buttonURL: "https://www.instagram.com/rokan.tech/",
 };
 const FooterSection = {
   Links: [
@@ -88,19 +88,23 @@ const FooterSection = {
   socials: [
     {
       logo: <TwitterLogo size={24} color="#131317" weight="fill" />,
-      url: "",
+      label: "Rokan Tech Twitter Profile",
+      url: "https://twitter.com/rokantech",
     },
     {
       logo: <YoutubeLogo size={24} color="#131317" weight="fill" />,
-      url: "",
+      label: "Rokan Tech Toutube Channel",
+      url: "https://www.youtube.com/@rokantech",
     },
     {
       logo: <LinkedinLogo size={24} color="#131317" weight="fill" />,
-      url: "",
+      label: "Rokan Tech Linkedin Profile",
+      url: "https://www.linkedin.com/in/md-rokan-uddin/",
     },
     {
       logo: <InstagramLogo size={24} color="#131317" weight="fill" />,
-      url: "",
+      label: "Rokan Tech Instagram Profile",
+      url: "https://www.instagram.com/rokan.tech/",
     },
   ],
 };

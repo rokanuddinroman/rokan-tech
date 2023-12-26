@@ -55,7 +55,7 @@ const CommandInput = React.forwardRef<
       {...props}
     />
     <Button
-      className="h-[30px] bg-[hsla(0,0%,100%,.1)] text-[#fff] text-[14px] hover:text-[#000]"
+      className="h-[30px] bg-[hsla(0,0%,100%,.1)] text-[#fff] text-[14px] hover:bg-white hover:text-[#000]"
       onClick={handleButton}
     >
       Search
@@ -126,7 +126,7 @@ const CommandItem = React.forwardRef<
   <CommandPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className
     )}
     {...props}

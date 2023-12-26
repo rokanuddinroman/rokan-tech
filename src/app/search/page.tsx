@@ -8,17 +8,16 @@ import useCards from "@/hooks/useCards";
 import { ArrowElbowUpLeft, ArrowRight } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
 function CategoryPage() {
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const search = searchParams.get("q");
   const { myCards } = useCards();
 
   const searchedCards = myCards.filter((cards) => {
-    return search && cards.title.includes(search.toString());
+    return search && cards.title.toLowerCase().includes(search.toLowerCase());
   });
 
   return (

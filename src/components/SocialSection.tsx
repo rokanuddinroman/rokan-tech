@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "./ui/button";
-import Image from "next/image";
 import Link from "next/link";
 import useData from "@/hooks/useData";
 
@@ -21,7 +20,11 @@ export const SocialSection = () => {
         <p className="pb-8 text-[#6b7280] text-[14px] md:text-[18px] max-w-[48rem] text-center px-4">
           {SocialSectionData.paragraph}
         </p>
-        <Link className="mb-10" href={SocialSectionData.buttonURL} target="_/">
+        <Link
+          className="mb-10"
+          href={SocialSectionData.buttonURL}
+          target="_blank"
+        >
           <Button>
             {SocialSectionData.buttonLogo}
             {SocialSectionData.buttonText}

@@ -5,7 +5,6 @@ import {
   House,
   MagnifyingGlass,
   Notebook,
-  RocketLaunch,
 } from "@phosphor-icons/react";
 import Link from "next/link";
 import { SearchDialog } from "./SearchDialog";
@@ -39,19 +38,7 @@ export const Dock = () => {
   const pathname = usePathname();
   return (
     <div>
-      <div
-        style={{
-          position: "fixed",
-          bottom: "0",
-          left: "0",
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          pointerEvents: "none",
-          zIndex: "999",
-        }}
-      >
+      <div className="fixed bottom-0 left-0 w-full flex items-center justify-center pointer-events-none z-[999]">
         <div
           style={{
             padding: "10px 12px",
@@ -67,7 +54,7 @@ export const Dock = () => {
             pointerEvents: "all",
           }}
         >
-          <Link href="/">
+          <Link href="/" aria-label="Rokan Tech Home">
             <div
               className="iosRounded dock-icon"
               style={{
@@ -113,7 +100,7 @@ export const Dock = () => {
               style={{ opacity: "0.2" }}
             />
           </div>
-          <Link href="/blogs">
+          <Link href="/blogs" aria-label="Rokan Tech Blogs">
             <div
               className="iosRounded dock-icon"
               style={{
@@ -136,7 +123,7 @@ export const Dock = () => {
               />
             </div>
           </Link>
-          <Link href="/work">
+          <Link href="/work" aria-label="Work with Rokan">
             <div
               className="iosRounded dock-icon btn btn-anim"
               style={{

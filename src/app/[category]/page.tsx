@@ -9,13 +9,11 @@ import useCards from "@/hooks/useCards";
 import { ArrowElbowUpLeft, ArrowRight } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 function CategoryPage() {
-  const searchParams = useSearchParams();
   const pathname = usePathname();
-  const search = searchParams.get("search");
   const { myCards } = useCards();
 
   const searchedCards = myCards.filter(

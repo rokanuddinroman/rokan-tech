@@ -1,20 +1,14 @@
 "use client";
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import { useToast } from "./ui/use-toast";
-import { ToastAction } from "./ui/toast";
-import { MembersSuccessResponse } from "@/app/types/Newsletter";
-import Confetti from "react-confetti";
 import useData from "@/hooks/useData";
 
 export const HeroSection = () => {
   const { HeroSectionData } = useData();
   const [email, setEmail] = useState("");
-  const [successMessage, setSuccessMessage] =
-    useState<MembersSuccessResponse>();
-  const [errorMessage, setErrorMessage] = useState("");
 
   const handleEmailSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,11 +35,6 @@ export const HeroSection = () => {
         description: `You ${data.res.email_address} is subscribed now. thanks!`,
       });
     }
-  };
-
-  const dismissMessages = () => {
-    setSuccessMessage(undefined);
-    setErrorMessage("");
   };
 
   const { toast } = useToast();

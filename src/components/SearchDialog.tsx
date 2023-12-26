@@ -1,16 +1,5 @@
 "use client";
-
 import * as React from "react";
-import {
-  Calculator,
-  Calendar,
-  CreditCard,
-  Settings,
-  Smile,
-  User,
-  Workflow,
-} from "lucide-react";
-
 import {
   CommandDialog,
   CommandEmpty,
@@ -21,8 +10,10 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { Briefcase, Cube, Rocket } from "@phosphor-icons/react";
+import useCards from "@/hooks/useCards";
 
 export function SearchDialog({
   setOpen,
@@ -43,6 +34,14 @@ export function SearchDialog({
     e.preventDefault();
     router.push(`/search?q=${encodeURIComponent(query)}`);
   };
+
+  const { myCards } = useCards();
+  const selectedResults = query
+    ? myCards.filter((item) =>
+        item.title.toLowerCase().includes(query.toLowerCase())
+      )
+    : [];
+
   return (
     <>
       <CommandDialog open={open} onOpenChange={setOpen}>
@@ -53,11 +52,22 @@ export function SearchDialog({
           handleButton={handleSubmit}
         />
         <CommandList>
+          <CommandGroup>
+            {selectedResults &&
+              selectedResults.map((item) => (
+                <Link key={item.slug} href={`/${item.category}/${item.slug}`}>
+                  <CommandItem>
+                    <Rocket className="mr-2 h-4 w-4" />
+                    <span>{item.title}</span>
+                  </CommandItem>
+                </Link>
+              ))}
+          </CommandGroup>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Trending">
             <Link href="/search?q=Linkup">
               <CommandItem>
-                <Calendar className="mr-2 h-4 w-4" />
+                <Rocket className="mr-2 h-4 w-4" />
                 <span>Linkup</span>
               </CommandItem>
             </Link>
@@ -65,12 +75,12 @@ export function SearchDialog({
           <CommandSeparator />
           <CommandGroup heading="Popular">
             <CommandItem>
-              <User className="mr-2 h-4 w-4" />
+              <Cube className="mr-2 h-4 w-4" />
               <span>Templates</span>
               <CommandShortcut>⌘P</CommandShortcut>
             </CommandItem>
             <CommandItem>
-              <Workflow className="mr-2 h-4 w-4" />
+              <Briefcase className="mr-2 h-4 w-4" />
               <span>Work</span>
               <CommandShortcut>⌘K</CommandShortcut>
             </CommandItem>
