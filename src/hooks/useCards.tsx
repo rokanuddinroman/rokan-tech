@@ -77,8 +77,8 @@ const AllProducts = [
   {
     category: "Framer-Overrides",
     title: "Skeuomorphic button",
-    image: "https://i.ibb.co/H72Fcz9/Slide-16-9-8-1.png",
-    featuredImage: "https://i.ibb.co/vvpWwz3/Mac-Book-Pro-16-1.png",
+    image: "https://i.ibb.co/QXWS4Yy/Frame-16.png",
+    featuredImage: "https://i.ibb.co/QXWS4Yy/Frame-16.png",
     description:
       "Skeuomorphic Buttons are used to give navigation and using features a sense of realism.",
     slug: "skeuomorphic-button",
