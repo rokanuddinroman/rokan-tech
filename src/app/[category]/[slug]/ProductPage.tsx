@@ -12,6 +12,8 @@ import {
   ArrowRight,
   ArrowUpRight,
   CheckCircle,
+  Clipboard,
+  Copy,
   XCircle,
 } from "@phosphor-icons/react";
 import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
@@ -22,6 +24,9 @@ import React, { ReactNode, useEffect, useRef, useState } from "react";
 
 interface CardsResponse {
   myCards: {
+    buttonType?: string;
+    secondaryButtonText?: ReactNode;
+    primaryButtonText?: ReactNode;
     category: string;
     title: string;
     slug: string;
@@ -127,7 +132,34 @@ function ProductPage() {
                 {selectedItem.description}
               </p>
               <div className="flex items-center justify-center gap-2 mt-10">
-                {selectedItem.primaryButtonURL && (
+                {selectedItem.buttonType === "clipboard" && (
+                  <Button
+                    variant="styled"
+                    onClick={() =>
+                      navigator.clipboard.writeText(
+                        selectedItem.primaryButtonURL ?? ""
+                      )
+                    }
+                  >
+                    {selectedItem?.primaryButtonText}
+                    <Copy size={18} className="ml-1" />
+                  </Button>
+                )}
+                {selectedItem.buttonType === "clipboard" && (
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      navigator.clipboard.writeText(
+                        selectedItem.secondaryButtonURL ?? ""
+                      )
+                    }
+                  >
+                    {selectedItem?.secondaryButtonText}
+                    <Copy size={18} className="ml-1" />
+                  </Button>
+                )}
+                {/* Clipboard button up  */}
+                {selectedItem?.buttonType !== "clipboard" && (
                   <Link
                     target="_blank"
                     href={selectedItem.primaryButtonURL ?? ""}
@@ -138,7 +170,7 @@ function ProductPage() {
                     </Button>
                   </Link>
                 )}
-                {selectedItem.secondaryButtonURL && (
+                {selectedItem?.buttonType !== "clipboard" && (
                   <Link
                     target="_blank"
                     href={selectedItem.secondaryButtonURL ?? ""}
