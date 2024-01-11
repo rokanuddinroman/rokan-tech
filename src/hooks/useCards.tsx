@@ -284,14 +284,7 @@ const AllProducts = [
     price: "0",
     overview: (
       <div>
-        <p className="mb-4">
-          Introducing CreatorApp – a sleek and versatile NextJS template.
-          Elevate your online presence with a modern design, seamless newsletter
-          integration, categorized project showcase, and a captivating product
-          page. Your all-in-one solution for portfolios, stores, newsletters,
-          and beyond.
-        </p>
-        <img src="https://i.ibb.co/ZKkzZMg/image.png" alt="" />
+        <video src="/button.mov" width="100%" controls />
       </div>
     ),
     features: [
