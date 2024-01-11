@@ -23,34 +23,34 @@ interface Props {
   params: { slug: string };
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  try {
-    const allItems = await fetch("http://localhost:3000/api/products").then(
-      (res) => res.json()
-    );
-    const selectedItem = allItems.find(
-      (item: Product) => item.slug === params.slug
-    );
+// export async function generateMetadata({ params }: Props): Promise<Metadata> {
+//   try {
+//     const allItems = await fetch("http://localhost:3000/api/products").then(
+//       (res) => res.json()
+//     );
+//     const selectedItem = allItems.find(
+//       (item: Product) => item.slug === params.slug
+//     );
 
-    if (!selectedItem) {
-      return {
-        title: "Not Found",
-        description: "The page you are looking for does not exist",
-      };
-    }
+//     if (!selectedItem) {
+//       return {
+//         title: "Not Found",
+//         description: "The page you are looking for does not exist",
+//       };
+//     }
 
-    return {
-      title: `${selectedItem.title} | Rokan Tech`,
-      description: selectedItem.description,
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      title: "Not Found",
-      description: "The page you are looking for does not exist",
-    };
-  }
-}
+//     return {
+//       title: `${selectedItem.title} | Rokan Tech`,
+//       description: selectedItem.description,
+//     };
+//   } catch (error) {
+//     console.error(error);
+//     return {
+//       title: "Not Found",
+//       description: "The page you are looking for does not exist",
+//     };
+//   }
+// }
 
 function IndividualProduct() {
   return (

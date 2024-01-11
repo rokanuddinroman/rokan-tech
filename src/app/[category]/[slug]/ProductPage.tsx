@@ -6,6 +6,7 @@ import { TopBar } from "@/components/TopBar";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/ui/layout";
 import useCards from "@/hooks/useCards";
+import useDocumentTitle from "@/hooks/useTitle";
 import {
   ArrowElbowUpLeft,
   ArrowLeft,
@@ -52,6 +53,7 @@ function ProductPage() {
 
   const { myCards }: CardsResponse = useCards();
   const selectedItem = myCards.find((item) => item.slug === currentSlug);
+  useDocumentTitle(selectedItem?.title ?? "");
 
   const handleScroll = () => {
     const scrollY = window.scrollY;

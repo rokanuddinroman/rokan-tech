@@ -90,7 +90,7 @@ const AllProducts = [
     
     import { addPropertyControls, ControlType } from "framer"
     import { motion } from "framer-motion"
-    import { Icon } from "@iconify-icon/react"
+    import { useEffect } from "react"
     
     /**
      * These annotations control how your component sizes
@@ -102,6 +102,15 @@ const AllProducts = [
     export default function SkeuomorphicButton(props) {
         const { tint, borderColor, text, icon, iconColor, iconSize } = props
     
+        useEffect(() => {
+          const script = document.createElement("script")
+          script.src = "https://code.iconify.design/3/3.1.1/iconify.min.js"
+          script.async = true
+          document.body.appendChild(script)
+          return () => {
+              document.body.removeChild(script)
+          }
+      }, [])
         return (
             <button
             style={{
@@ -110,10 +119,12 @@ const AllProducts = [
               boxShadow: \`0px 0px 0px 1px \${borderColor}, 0px 1px 2px 0px rgba(0, 0, 0, 0.32), 0px 4px 8px -4px rgba(0, 0, 0, 0.32), 0px -2px 0.75px 0px rgba(0, 0, 0, 0.12) inset, 0px 1px 0.75px 0px rgba(255, 255, 255, 0.24) inset\`,
           }}
             >
-                <Icon
-                    icon={icon}
-                    style={{ fontSize: iconSize, color: iconColor }}
-                />
+                
+            <span
+            style={{ color: iconColor, fontSize: iconSize }}
+            className="iconify-inline"
+            data-icon={icon}
+        ></span>
                 <span
                     style={{
                         color: "#FFF0EA",
@@ -180,7 +191,7 @@ const AllProducts = [
     
     import { addPropertyControls, ControlType } from "framer"
     import { motion } from "framer-motion"
-    import { Icon } from "@iconify-icon/react"
+    import { useEffect } from "react"
     
     /**
      * These annotations control how your component sizes
@@ -191,7 +202,15 @@ const AllProducts = [
      */
     export default function SkeuomorphicLightButton(props) {
         const { tint, borderColor, text, icon, iconColor, iconSize } = props
-    
+        useEffect(() => {
+          const script = document.createElement("script")
+          script.src = "https://code.iconify.design/3/3.1.1/iconify.min.js"
+          script.async = true
+          document.body.appendChild(script)
+          return () => {
+              document.body.removeChild(script)
+          }
+      }, [])
         return (
             <button
                 style={{
@@ -203,10 +222,11 @@ const AllProducts = [
                         "0px 0px 0px 1px rgba(22, 36, 44, 0.12), 0px 1px 2px 0px rgba(22, 36, 44, 0.16), 0px 4px 8px -4px rgba(22, 36, 44, 0.16), 0px -2px 0.75px 0px rgba(22, 36, 44, 0.06) inset, 0px 1px 0.75px 0px rgba(255, 255, 255, 0.50) inset",
                 }}
             >
-                <Icon
-                    icon={icon}
-                    style={{ fontSize: iconSize, color: iconColor }}
-                />
+            <span
+            style={{ color: iconColor, fontSize: iconSize }}
+            className="iconify-inline"
+            data-icon={icon}
+        ></span>
                 <span
                     style={{
                         color: "#333",
