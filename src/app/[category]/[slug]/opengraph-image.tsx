@@ -55,12 +55,6 @@ export default async function Thumbnail({
             className="object-cover aspect-video"
           />
         )}
-        <Image
-          src="/opengraph-image.png"
-          fill
-          alt=""
-          className="object-cover aspect-video"
-        />
       </div>
     )
   );

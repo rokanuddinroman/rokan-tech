@@ -27,17 +27,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: `${selectedItem[2]} | Rokan Tech`,
       description: selectedItem[5],
+      alternates: {
+        canonical: `https://rokan.tech/${selectedItem[1].toLowerCase()}/${
+          selectedItem[6]
+        }`,
+      },
       openGraph: {
         title: `${selectedItem[2]} | Rokan Tech`,
         description: selectedItem[5],
+        url: `https://rokan.tech/${selectedItem[1].toLowerCase()}/${
+          selectedItem[6]
+        }`,
+        siteName: "Rokan Tech",
         images: [
           {
             url: selectedItem[4],
-            width: 1200,
-            height: 630,
+            width: 1260,
+            height: 800,
             alt: `${selectedItem[2]} | Rokan Tech`,
           },
         ],
+        locale: "en-US",
+        type: "website",
       },
       twitter: {
         card: "summary_large_image",
