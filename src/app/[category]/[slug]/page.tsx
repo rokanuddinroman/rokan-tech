@@ -33,24 +33,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           "es-US": `/en-US/${selectedItem[1].toLowerCase()}/${selectedItem[6]}`,
         },
       },
-      // openGraph: {
-      //   title: `${selectedItem[2]}`,
-      //   description: selectedItem[5],
-      //   url: `https://rokan.tech/${selectedItem[1].toLowerCase()}/${
-      //     selectedItem[6]
-      //   }`,
-      //   siteName: "Rokan Tech",
-      //   images: [
-      //     {
-      //       url: selectedItem[4],
-      //       width: 1260,
-      //       height: 800,
-      //       alt: `${selectedItem[2]}`,
-      //     },
-      //   ],
-      //   locale: "en-US",
-      //   type: "website",
-      // },
+      openGraph: {
+        title: `${selectedItem[2]}`,
+        description: selectedItem[5],
+        url: `https://rokan.tech/${selectedItem[1].toLowerCase()}/${
+          selectedItem[6]
+        }`,
+        siteName: "Rokan Tech",
+        images: [
+          {
+            url: selectedItem[4],
+            width: 1260,
+            height: 800,
+            alt: `${selectedItem[2]}`,
+          },
+        ],
+        locale: "en-US",
+        type: "website",
+      },
       twitter: {
         card: "summary_large_image",
         title: `${selectedItem[2]}`!!,
