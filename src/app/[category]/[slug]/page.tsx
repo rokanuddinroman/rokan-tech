@@ -72,8 +72,8 @@ async function IndividualProduct() {
   return (
     <div>
       <Head>
-        <meta property="og:image" content="<generated>" />
-        <meta property="og:image:alt" content="About Acme" />
+        {/* <meta property="og:image" content="<generated>" /> */}
+        <meta property="og:image:alt" content="About Rokan" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1080" />
         <meta property="og:image:height" content="720" />

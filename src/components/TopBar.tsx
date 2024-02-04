@@ -13,32 +13,32 @@ export const TopBar = () => {
             className="text-lg font-bold"
             target="_blank"
           >
-            {TopbarData.text} \ {TopbarData.text} \ {TopbarData.text} \{" "}
-            {TopbarData.text} \ {TopbarData.text} \ {TopbarData.text} \
+            {TopbarData.text} ❋ {TopbarData.text} ❋ {TopbarData.text} ❋{" "}
+            {TopbarData.text} ❋ {TopbarData.text} ❋ {TopbarData.text} ❋
           </Link>
           <Link
             href={TopbarData.URL}
             className="text-lg font-bold"
             target="_blank"
           >
-            {TopbarData.text} \ {TopbarData.text} \ {TopbarData.text} \{" "}
-            {TopbarData.text} \ {TopbarData.text} \ {TopbarData.text} \
+            {TopbarData.text} ❋ {TopbarData.text} ❋ {TopbarData.text} ❋{" "}
+            {TopbarData.text} ❋ {TopbarData.text} ❋ {TopbarData.text} ❋
           </Link>
           <Link
             href={TopbarData.URL}
             className="text-lg font-bold"
             target="_blank"
           >
-            {TopbarData.text} \ {TopbarData.text} \ {TopbarData.text} \{" "}
-            {TopbarData.text} \ {TopbarData.text} \ {TopbarData.text} \
+            {TopbarData.text} ❋ {TopbarData.text} ❋ {TopbarData.text} ❋{" "}
+            {TopbarData.text} ❋ {TopbarData.text} ❋ {TopbarData.text} ❋
           </Link>
           <Link
             href={TopbarData.URL}
             className="text-lg font-bold"
             target="_blank"
           >
-            {TopbarData.text} \ {TopbarData.text} \ {TopbarData.text} \{" "}
-            {TopbarData.text} \ {TopbarData.text} \ {TopbarData.text} \
+            {TopbarData.text} ❋ {TopbarData.text} ❋ {TopbarData.text} ❋{" "}
+            {TopbarData.text} ❋ {TopbarData.text} ❋ {TopbarData.text} ❋
           </Link>
         </div>
       </div>

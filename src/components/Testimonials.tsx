@@ -34,10 +34,10 @@ export const Testimonials = () => {
         {/* ----------Update Button Text here---------- */}
         <Link
           target="_blank"
-          href="https://www.buymeacoffee.com/rokanuddin/e/173543"
+          href="https://www.buymeacoffee.com/rokanuddin/e/210777"
         >
           <button className="bg-[#E73521] rounded-full h-[40px] px-6 text-[#020202] font-[500] mt-6">
-            Get Linkup -&gt;
+            Get CreatorApp -&gt;
           </button>
         </Link>
       </div>

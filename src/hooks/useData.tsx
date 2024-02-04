@@ -7,7 +7,7 @@ import {
 
 const Topbar = {
   text: "Get this template",
-  URL: "",
+  URL: "https://www.buymeacoffee.com/rokanuddin/e/210777",
 };
 const Navbar = {
   LogoText: "Rokan Tech",
