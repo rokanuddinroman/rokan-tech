@@ -27,6 +27,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: `${selectedItem[2]} | Rokan Tech`,
       description: selectedItem[5],
+      openGraph: {
+        images: [{ url: selectedItem[4] }],
+      },
     };
   } catch (error) {
     console.error(error);
