@@ -11,7 +11,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Rokan Tech – NextJS and Framer Expert",
+  metadataBase: new URL("https://rokan.tech"),
+  title: {
+    default: "Rokan Tech – NextJS and Framer Developer",
+    template: `%s | Rokan tech`,
+  },
   description:
     "Rokan is a Full-Stack Developer, specialized in NextJS and Framer.",
 };

@@ -29,32 +29,22 @@ export default async function Thumbnail({
   );
   return new ImageResponse(
     (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "relative",
-          aspectRatio: "16/9",
-        }}
-      >
-        {selectedItem ? (
-          <Image
-            src={selectedItem[4]}
-            fill
-            alt=""
-            className="object-cover aspect-video"
-          />
-        ) : (
-          <Image
-            src="/opengraph-image.png"
-            fill
-            alt=""
-            className="object-cover aspect-video"
-          />
-        )}
+      <div tw="relative flex w-full h-full items-center justify-center">
+        <div tw="absolute flex inset-0">
+          {selectedItem ? (
+            <img
+              src={selectedItem[4] + "&w-1200&h=630&auto=format&q=75"}
+              alt=""
+              tw="object-cover aspect-video"
+            />
+          ) : (
+            <img
+              src="/opengraph-image.png"
+              alt=""
+              tw="object-cover aspect-video"
+            />
+          )}
+        </div>
       </div>
     )
   );

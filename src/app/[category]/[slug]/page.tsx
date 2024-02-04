@@ -19,41 +19,43 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     if (!selectedItem) {
       return {
-        title: `Not Found | Rokan Tech`,
+        title: `Not Found`,
         description: "The page you are looking for does not exist",
       };
     }
 
     return {
-      title: `${selectedItem[2]} | Rokan Tech`,
+      title: `${selectedItem[2]}`,
       description: selectedItem[5],
       alternates: {
-        canonical: `https://rokan.tech/${selectedItem[1].toLowerCase()}/${
-          selectedItem[6]
-        }`,
+        canonical: `/${selectedItem[1].toLowerCase()}/${selectedItem[6]}`,
+        languages: {
+          "es-US": `/en-US/${selectedItem[1].toLowerCase()}/${selectedItem[6]}`,
+        },
       },
-      openGraph: {
-        title: `${selectedItem[2]} | Rokan Tech`,
-        description: selectedItem[5],
-        url: `https://rokan.tech/${selectedItem[1].toLowerCase()}/${
-          selectedItem[6]
-        }`,
-        siteName: "Rokan Tech",
-        images: [
-          {
-            url: selectedItem[4],
-            width: 1260,
-            height: 800,
-            alt: `${selectedItem[2]} | Rokan Tech`,
-          },
-        ],
-        locale: "en-US",
-        type: "website",
-      },
+      // openGraph: {
+      //   title: `${selectedItem[2]}`,
+      //   description: selectedItem[5],
+      //   url: `https://rokan.tech/${selectedItem[1].toLowerCase()}/${
+      //     selectedItem[6]
+      //   }`,
+      //   siteName: "Rokan Tech",
+      //   images: [
+      //     {
+      //       url: selectedItem[4],
+      //       width: 1260,
+      //       height: 800,
+      //       alt: `${selectedItem[2]}`,
+      //     },
+      //   ],
+      //   locale: "en-US",
+      //   type: "website",
+      // },
       twitter: {
         card: "summary_large_image",
-        title: `${selectedItem[2]} | Rokan Tech`,
-        description: selectedItem[5],
+        title: `${selectedItem[2]}`!!,
+        description: selectedItem[5]!!,
+        creator: "@rokanuddin",
         images: selectedItem[4],
       },
     };
