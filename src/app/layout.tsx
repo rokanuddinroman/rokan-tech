@@ -28,6 +28,16 @@ export default function RootLayout({
           href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,700,400,600,300,1,500&display=swap"
           rel="stylesheet"
         />
+        <meta property="og:image" content="<generated>" />
+        <meta property="og:image:type" content="<generated>" />
+        <meta property="og:image:width" content="<generated>" />
+        <meta property="og:image:height" content="<generated>" />
+        <meta name="twitter:image" content="<generated>" />
+        <meta name="twitter:image:type" content="<generated>" />
+        <meta name="twitter:image:width" content="<generated>" />
+        <meta name="twitter:image:height" content="<generated>" />
+        <meta property="og:image:alt" content="About Acme" />
+        <meta property="twitter:image:alt" content="About Acme" />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
