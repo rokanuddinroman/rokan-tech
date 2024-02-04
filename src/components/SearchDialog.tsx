@@ -14,6 +14,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Briefcase, Cube, Rocket } from "@phosphor-icons/react";
 import useCards from "@/hooks/useCards";
+import { useProducts } from "@/hooks/useProducts";
 
 export function SearchDialog({
   setOpen,
@@ -35,10 +36,10 @@ export function SearchDialog({
     router.push(`/search?q=${encodeURIComponent(query)}`);
   };
 
-  const { myCards } = useCards();
+  const { products } = useProducts();
   const selectedResults = query
-    ? myCards.filter((item) =>
-        item.title.toLowerCase().includes(query.toLowerCase())
+    ? products.filter((item) =>
+        (item[2] as string).toLowerCase().includes(query.toLowerCase())
       )
     : [];
 
@@ -55,10 +56,13 @@ export function SearchDialog({
           <CommandGroup>
             {selectedResults &&
               selectedResults.map((item) => (
-                <Link key={item.slug} href={`/${item.category}/${item.slug}`}>
+                <Link
+                  key={item[6]}
+                  href={`/${(item[1] as string).toLowerCase()}/${item[6]}`}
+                >
                   <CommandItem>
                     <Rocket className="mr-2 h-4 w-4" />
-                    <span>{item.title}</span>
+                    <span>{item[2]}</span>
                   </CommandItem>
                 </Link>
               ))}

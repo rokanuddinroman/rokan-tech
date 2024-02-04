@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 const AllProducts = [
   {
     category: "Templates",
@@ -296,8 +299,84 @@ const AllProducts = [
     ],
   },
 ];
+
+interface Product {
+  category: string;
+  title: string;
+  slug: string;
+  image: string;
+  description: string;
+  primaryButtonURL?: string;
+  secondaryButtonURL?: string;
+  isFree: boolean;
+  rating: string;
+  salesCount: string;
+  price: string;
+  featuredImage?: string;
+  overview: string;
+  features: object[];
+}
+
 const useCards = () => {
-  const myCards = AllProducts;
+  const [products, setProducts] = useState<Product[]>([]);
+  // async function load() {
+  //   const response = await fetch(
+  //     "https://sheets.googleapis.com/v4/spreadsheets/1-wuQrUkDptzaCVZvUR0vHN_ErwF3dbwTbSSogH-uVD0/values/!A:Z?key=AIzaSyD3NeE_duvvP_UcvTO45nbVa-VcWbkpqYA"
+  //   );
+  //   //   console.log(response);
+  //   const events = await response.json();
+  //   setProducts(events);
+  // }
+
+  // load();
+  // useEffect(() => {
+  //   fetch(
+  //     "https://sheets.googleapis.com/v4/spreadsheets/1-wuQrUkDptzaCVZvUR0vHN_ErwF3dbwTbSSogH-uVD0/values/!A:Z?key=AIzaSyD3NeE_duvvP_UcvTO45nbVa-VcWbkpqYA"
+  //   )
+  //     .then((res) => res.json())
+  //     .then((res) => setProducts(res));
+  // }, []);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://sheets.googleapis.com/v4/spreadsheets/1-wuQrUkDptzaCVZvUR0vHN_ErwF3dbwTbSSogH-uVD0/values/!A:Z?key=AIzaSyD3NeE_duvvP_UcvTO45nbVa-VcWbkpqYA"
+  //       );
+
+  //       if (!response.ok) {
+  //         throw new Error("Failed to fetch data");
+  //       }
+
+  //       const data = await response.json();
+  //       setProducts(data);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error.message);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://sheets.googleapis.com/v4/spreadsheets/1-wuQrUkDptzaCVZvUR0vHN_ErwF3dbwTbSSogH-uVD0/values/!A:Z?key=AIzaSyD3NeE_duvvP_UcvTO45nbVa-VcWbkpqYA"
+        );
+
+        // Axios automatically checks if the response is ok
+        const data = response.data;
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching data");
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const myCards = products ?? [];
   return { myCards };
 };
 

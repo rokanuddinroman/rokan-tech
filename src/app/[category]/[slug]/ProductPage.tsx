@@ -5,55 +5,54 @@ import { Navbar } from "@/components/Navbar";
 import { TopBar } from "@/components/TopBar";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/ui/layout";
+import { Skeleton } from "@/components/ui/skeleton";
 import useCards from "@/hooks/useCards";
+import { useProducts } from "@/hooks/useProducts";
 import useDocumentTitle from "@/hooks/useTitle";
 import {
   ArrowElbowUpLeft,
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  CheckCircle,
-  Clipboard,
-  Copy,
-  XCircle,
 } from "@phosphor-icons/react";
 import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-interface CardsResponse {
-  myCards: {
-    buttonType?: string;
-    secondaryButtonText?: ReactNode;
-    primaryButtonText?: ReactNode;
-    category: string;
-    title: string;
-    slug: string;
-    image: string;
-    description: string;
-    primaryButtonURL?: string;
-    secondaryButtonURL?: string;
-    isFree: boolean;
-    rating: string;
-    salesCount: string;
-    price: string;
-    featuredImage?: string;
-    overview: ReactNode;
-    features: object[];
-  }[];
-}
+const getFeatureds = (selectedItem: string) => {
+  return (
+    <div className="mt-4">
+      <div className="flex items-center justify-between py-2 border-b border-[#363636]">
+        <p className="text-[14px] text-[#888888]">Technology</p>
+        <p className="text-[14px] text-[#888888]">{selectedItem[16]}</p>
+      </div>
+      <div className="flex items-center justify-between py-2 border-b border-[#363636]">
+        <p className="text-[14px] text-[#888888]">Responsive</p>
+        <p className="text-[14px] text-[#888888]">
+          {Number(selectedItem[18]) == 1 ? "Yes" : "No"}
+        </p>
+      </div>
+      <div className="flex items-center justify-between py-2 border-b border-[#363636]">
+        <p className="text-[14px] text-[#888888]">Use Cases</p>
+        <p className="text-[14px] text-[#888888]">{selectedItem[17]}</p>
+      </div>
+      <div className="flex items-center justify-between py-2 gap-8 border-b border-[#363636]">
+        <p className="text-[14px] text-[#888888]">Pages</p>
+        <p className="text-[14px] text-[#888888]">{selectedItem[19]}</p>
+      </div>
+    </div>
+  );
+};
 
 function ProductPage() {
   const pathname = usePathname();
   const currentSlug = pathname.split("/")[2];
   const category = pathname.split("/")[1];
   const controls = useAnimation();
-
-  const { myCards }: CardsResponse = useCards();
-  const selectedItem = myCards.find((item) => item.slug === currentSlug);
-  useDocumentTitle(selectedItem?.title ?? "");
+  const { products } = useProducts();
+  const selectedItem = products.find((item) => item[6] === currentSlug);
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -94,12 +93,13 @@ function ProductPage() {
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "380%"]);
+
   return (
     <div>
       <TopBar />
       <Navbar />
 
-      {selectedItem && (
+      {selectedItem ? (
         <>
           <Layout
             ref={ref}
@@ -118,7 +118,7 @@ function ProductPage() {
                   href={`/${category.toLowerCase()}`}
                 >
                   <ArrowLeft weight="bold" color="rgb(107 114 128)" size={14} />
-                  {category}
+                  {selectedItem[1]}
                 </Link>
               </div>
               <h1
@@ -128,57 +128,24 @@ function ProductPage() {
                     "linear-gradient(0deg, rgb(143, 151, 168) 0%, rgb(255, 255, 255) 100%)",
                 }}
               >
-                {selectedItem.title}
+                {selectedItem[2]}
               </h1>
               <p className="text-center mx-auto text-[18px] w-[800px] text-gray-500">
-                {selectedItem.description}
+                {selectedItem[5]}
               </p>
               <div className="flex items-center justify-center gap-2 mt-10">
-                {selectedItem.buttonType === "clipboard" && (
-                  <Button
-                    variant="styled"
-                    onClick={() =>
-                      navigator.clipboard.writeText(
-                        selectedItem.primaryButtonURL ?? ""
-                      )
-                    }
-                  >
-                    {selectedItem?.primaryButtonText}
-                    <Copy size={18} className="ml-1" />
-                  </Button>
-                )}
-                {selectedItem.buttonType === "clipboard" && (
-                  <Button
-                    variant="outline"
-                    onClick={() =>
-                      navigator.clipboard.writeText(
-                        selectedItem.secondaryButtonURL ?? ""
-                      )
-                    }
-                  >
-                    {selectedItem?.secondaryButtonText}
-                    <Copy size={18} className="ml-1" />
-                  </Button>
-                )}
-                {/* Clipboard button up  */}
-                {selectedItem?.buttonType !== "clipboard" && (
-                  <Link
-                    target="_blank"
-                    href={selectedItem.primaryButtonURL ?? ""}
-                  >
+                {selectedItem && (
+                  <Link target="_blank" href={selectedItem[7] ?? ""}>
                     <Button variant="styled">
-                      Get the template
+                      {selectedItem[8]}
                       <ArrowRight size={18} className="ml-1" weight="bold" />
                     </Button>
                   </Link>
                 )}
-                {selectedItem?.buttonType !== "clipboard" && (
-                  <Link
-                    target="_blank"
-                    href={selectedItem.secondaryButtonURL ?? ""}
-                  >
+                {selectedItem && (
+                  <Link target="_blank" href={selectedItem[9] ?? ""}>
                     <Button variant="outline">
-                      Live Preview
+                      {selectedItem[10]}
                       <ArrowUpRight
                         size={18}
                         color="#ffffff"
@@ -191,8 +158,7 @@ function ProductPage() {
               </div>
               <div className="flex items-center justify-center flex-col gap-2 mt-8">
                 <p className="text-[14px] text-gray-500">
-                  Rated {selectedItem.rating} by {selectedItem.salesCount}+
-                  people
+                  Rated {selectedItem[11]} by {selectedItem[12]}+ people
                 </p>
                 <div className="flex -space-x-4 rtl:space-x-reverse">
                   <Image
@@ -217,7 +183,7 @@ function ProductPage() {
                     height={32}
                   />
                   <div className="flex items-center justify-center w-8 h-8 text-xs font-medium text-white bg-[#757575] border-2 border-[#2a2a2a] rounded-full hover:bg-[#373737] dark:border-gray-800">
-                    +{Number(selectedItem.salesCount) > 99 ? "99" : "9"}
+                    +{Number(selectedItem[42]) > 99 ? "99" : "9"}
                   </div>
                 </div>
               </div>
@@ -232,8 +198,8 @@ function ProductPage() {
                 }}
               >
                 <Image
-                  src={selectedItem.featuredImage ?? ""}
-                  alt={selectedItem.title ?? ""}
+                  src={selectedItem[4] ?? ""}
+                  alt={selectedItem[2] ?? ""}
                   fill={true}
                   loading="lazy"
                   style={{ objectFit: "cover", borderRadius: "8px" }}
@@ -249,142 +215,126 @@ function ProductPage() {
               <h2 className="text-[36px] font-[700] leading-[42px] text-[#ededed] py-2">
                 Overview
               </h2>
-              {selectedItem.overview}
+              {React.createElement("div", {
+                dangerouslySetInnerHTML: { __html: selectedItem[15] },
+              })}
             </div>
             <div className="lg:pl-4">
               <div className=" lg:pr-4 lg:sticky top-[80px]">
                 <h2 className="text-[36px] font-[700] leading-[42px] text-[#ededed] py-2">
                   Features
                 </h2>
-                <div>
-                  {selectedItem.features.map((feature) => (
-                    <div
-                      key={Object.keys(feature)[0]}
-                      className="flex items-center justify-between py-2 border-b border-[#363636]"
-                    >
-                      <p className="text-[14px] text-[#888888]">
-                        {Object.keys(feature)[0]}
-                      </p>
-                      <p className="text-[14px] text-[#888888]">
-                        {Object.values(feature)[0] == "yes" && (
-                          <CheckCircle size={20} color="#888888" />
-                        )}
-                        {Object.values(feature)[0] == "no" && (
-                          <XCircle size={20} color="#888888" />
-                        )}
-                        {Object.values(feature)[0] == "yes" ||
-                          ("no" && Object.values(feature)[0])}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+                {getFeatureds(selectedItem)}
                 <div className="grid grid-cols-2 gap-2 mt-8">
-                  <Button variant="styled">Get the template</Button>
-                  <Button variant="outline">Live Preview</Button>
+                  {selectedItem && (
+                    <Link target="_blank" href={selectedItem[7] ?? ""}>
+                      <Button variant="styled" className="w-full">
+                        {selectedItem[8]}
+                        <ArrowRight size={18} className="ml-1" weight="bold" />
+                      </Button>
+                    </Link>
+                  )}
+                  {selectedItem && (
+                    <Link target="_blank" href={selectedItem[9] ?? ""}>
+                      <Button variant="outline" className="w-full">
+                        {selectedItem[10]}
+                        <ArrowUpRight
+                          size={18}
+                          color="#ffffff"
+                          className="ml-1"
+                          weight="bold"
+                        />
+                      </Button>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
           </Layout>
         </>
+      ) : (
+        <div className="flex flex-col justify-center mt-10 items-center gap-6">
+          <Skeleton className="w-[60%] h-20 rounded" />
+          <Skeleton className="w-[40%] h-20 rounded" />
+          <Skeleton className="w-[20%] h-20 rounded" />
+          <Skeleton className="w-[50%] h-[500px] rounded" />
+        </div>
       )}
 
       {/* --------------- Mobile Below --------------- */}
 
-      <Layout className="border-b border-[#5757574d] block lg:hidden">
-        <Link
-          href={`/${category.toLowerCase()}`}
-          className="inline-flex items-center gap-1 h-[60px]"
-        >
-          <ArrowElbowUpLeft size={20} color="#ffffff" weight="bold" />
-          <p>{category}</p>
-        </Link>
-      </Layout>
       {selectedItem && (
-        <Layout
-          className="relative  grid lg:hidden 
-        grid-cols-1 pb-8"
-        >
-          <div className="pt-4">
-            <div
-              style={{
-                aspectRatio: "4/3",
-                position: "relative",
-              }}
+        <div>
+          <Layout className="border-b border-[#5757574d] block lg:hidden">
+            <Link
+              href={`/${category.toLowerCase()}`}
+              className="inline-flex items-center gap-1 h-[60px]"
             >
-              <Image
-                src={selectedItem.featuredImage ?? ""}
-                alt=""
-                fill={true}
-                style={{ objectFit: "cover", borderRadius: "8px" }}
-              />
+              <ArrowElbowUpLeft size={20} color="#ffffff" weight="bold" />
+              <p>{selectedItem[1]}</p>
+            </Link>
+          </Layout>
+          <Layout
+            className="relative  grid lg:hidden 
+        grid-cols-1 pb-8"
+          >
+            <div className="pt-4">
+              <div
+                style={{
+                  aspectRatio: "4/3",
+                  position: "relative",
+                }}
+              >
+                <Image
+                  src={selectedItem[4] ?? ""}
+                  alt=""
+                  fill={true}
+                  style={{ objectFit: "cover", borderRadius: "8px" }}
+                />
+              </div>
             </div>
-          </div>
-          <div className="lg:border-r border-[#363636] py-4 lg:pr-4 lg:sticky top-0">
-            <h2 className="text-[36px] font-[700] leading-[42px] text-[#ededed] pb-2 pt-4">
-              {selectedItem.title}
-            </h2>
-            <p className="text-[#888888]">{selectedItem.description}</p>
-            <div className="grid grid-cols-1 gap-2 mt-4">
-              {selectedItem.primaryButtonURL && (
-                <Link
-                  target="_blank"
-                  href={selectedItem.primaryButtonURL ?? ""}
-                >
-                  <Button variant="styled" className="w-full">
-                    Get the template
-                    <ArrowRight size={18} className="ml-1" weight="bold" />
-                  </Button>
-                </Link>
-              )}
-              {selectedItem.secondaryButtonURL && (
-                <Link
-                  target="_blank"
-                  href={selectedItem.secondaryButtonURL ?? ""}
-                >
-                  <Button variant="outline" className="w-full">
-                    Live Preview
-                    <ArrowUpRight
-                      size={18}
-                      color="#ffffff"
-                      className="ml-1"
-                      weight="bold"
-                    />
-                  </Button>
-                </Link>
-              )}
+            <div className="lg:border-r border-[#363636] py-4 lg:pr-4 lg:sticky top-0">
+              <h2 className="text-[36px] font-[700] leading-[42px] text-[#ededed] pb-2 pt-4">
+                {selectedItem[2]}
+              </h2>
+              <p className="text-[#888888]">{selectedItem[5]}</p>
+              <div className="grid grid-cols-1 gap-2 mt-4">
+                {selectedItem[7] && (
+                  <Link target="_blank" href={selectedItem[7] ?? ""}>
+                    <Button variant="styled" className="w-full">
+                      {selectedItem[8]}
+                      <ArrowRight size={18} className="ml-1" weight="bold" />
+                    </Button>
+                  </Link>
+                )}
+                {selectedItem[9] && (
+                  <Link target="_blank" href={selectedItem[9] ?? ""}>
+                    <Button variant="outline" className="w-full">
+                      {selectedItem[10]}
+                      <ArrowUpRight
+                        size={18}
+                        color="#ffffff"
+                        className="ml-1"
+                        weight="bold"
+                      />
+                    </Button>
+                  </Link>
+                )}
+              </div>
+              {getFeatureds(selectedItem)}
             </div>
-            <div className="mt-4">
-              {selectedItem.features.map((feature) => (
-                <div
-                  key={Object.keys(feature)[0]}
-                  className="flex items-center justify-between py-2 border-b border-[#363636]"
-                >
-                  <p className="text-[14px] text-[#888888]">
-                    {Object.keys(feature)[0]}
-                  </p>
-                  <p className="text-[14px] text-[#888888]">
-                    {Object.values(feature)[0] == "yes" && (
-                      <CheckCircle size={20} color="#888888" />
-                    )}
-                    {Object.values(feature)[0] == "no" && (
-                      <XCircle size={20} color="#888888" />
-                    )}
-                    {Object.values(feature)[0] == "yes" ||
-                      ("no" && Object.values(feature)[0])}
-                  </p>
-                </div>
-              ))}
+            <div>
+              <h2 className="text-[24px] font-[700] text-[#ededed] py-2">
+                Overview
+              </h2>
+              <div className="product-content text-[#888888]">
+                {React.createElement("div", {
+                  dangerouslySetInnerHTML: { __html: selectedItem[15] },
+                })}
+              </div>
             </div>
-          </div>
-          <div>
-            <h2 className="text-[24px] font-[700] text-[#ededed] py-2">
-              Overview
-            </h2>
-            <div className="product-content text-[#888888]">
-              {selectedItem.overview}
-            </div>
-          </div>
-        </Layout>
+          </Layout>
+        </div>
       )}
 
       <Footer />

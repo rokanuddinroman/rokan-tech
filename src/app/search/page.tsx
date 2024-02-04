@@ -1,10 +1,12 @@
 "use client";
+import { Card } from "@/components/Card";
 import { Dock } from "@/components/Dock";
 import Footer from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { TopBar } from "@/components/TopBar";
 import { Button } from "@/components/ui/button";
 import useCards from "@/hooks/useCards";
+import { useProducts } from "@/hooks/useProducts";
 import { ArrowElbowUpLeft, ArrowRight } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,10 +16,13 @@ import React from "react";
 function CategoryPage() {
   const searchParams = useSearchParams();
   const search = searchParams.get("q");
-  const { myCards } = useCards();
+  const { products } = useProducts();
 
-  const searchedCards = myCards.filter((cards) => {
-    return search && cards.title.toLowerCase().includes(search.toLowerCase());
+  const searchedCards = products.filter((cards) => {
+    return (
+      search &&
+      (cards[2] as string).toLowerCase().includes(search.toLowerCase())
+    );
   });
 
   return (
@@ -44,57 +49,7 @@ function CategoryPage() {
           {searchedCards.length !== 0 ? (
             <div className="grid grid-cols-1 gap-[20px] md:grid-cols-3">
               {searchedCards.map((card) => (
-                <div
-                  key={card.title}
-                  className="bg-[#1A1A1A] border border-[#242424] rounded-[8px]"
-                >
-                  <Link href={`/${card.category}/${card.slug}`}>
-                    <div
-                      style={{
-                        aspectRatio: "4/3",
-                        position: "relative",
-                      }}
-                    >
-                      <Image
-                        src={card.image}
-                        alt={card.title}
-                        fill={true}
-                        style={{ objectFit: "cover", borderRadius: "8px" }}
-                      />
-                    </div>
-                  </Link>
-                  <div className="p-4">
-                    <span className="text-[12px] text-gray-400">
-                      {card.category}
-                    </span>
-                    <p className="text-[20px] font-[600] leading-[24px] pt-2 text-[#EDEDED]">
-                      {card.title}
-                    </p>
-                  </div>
-                  <div className="p-4 border-t border-[#3636368c] flex items-center justify-between">
-                    <div className="flex items-center">
-                      <p
-                        className={`text-[20px] font-[700] ${
-                          card.isFree && "text-[#E73621]"
-                        }`}
-                      >
-                        {card.isFree ? "Free" : card.price}
-                      </p>
-                      <sup className="text-[10px] pl-[1px]">
-                        {!card.isFree && "USD"}
-                      </sup>
-                    </div>
-                    <Link
-                      href={`/${card.category}/${card.slug}`}
-                      className="flex items-center"
-                    >
-                      <p className="text-[12px] font-[600] pr-[6px]">
-                        View Product
-                      </p>
-                      <ArrowRight size={16} color="#ffffff" weight="bold" />
-                    </Link>
-                  </div>
-                </div>
+                <Card key={card[2]} card={card} />
               ))}
             </div>
           ) : (
