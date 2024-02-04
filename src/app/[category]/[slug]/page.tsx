@@ -28,7 +28,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${selectedItem[2]} | Rokan Tech`,
       description: selectedItem[5],
       openGraph: {
-        images: [{ url: selectedItem[4] }],
+        title: `${selectedItem[2]} | Rokan Tech`,
+        description: selectedItem[5],
+        images: [
+          {
+            url: selectedItem[4],
+            width: 1200,
+            height: 630,
+            alt: `${selectedItem[2]} | Rokan Tech`,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${selectedItem[2]} | Rokan Tech`,
+        description: selectedItem[5],
+        images: selectedItem[4],
       },
     };
   } catch (error) {
