@@ -17,8 +17,10 @@ function CategoryPage() {
   const { products } = useProducts();
 
   const searchedCards = products.filter(
-    (card) => (card[1] as string).toLowerCase() === pathname.slice(1)
+    (card) => String(card[1]).toLowerCase() === pathname.slice(1)
   );
+  console.log(products);
+  console.log(searchedCards);
 
   return (
     <div

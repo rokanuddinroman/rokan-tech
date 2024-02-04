@@ -39,7 +39,7 @@ export function SearchDialog({
   const { products } = useProducts();
   const selectedResults = query
     ? products.filter((item) =>
-        (item[2] as string).toLowerCase().includes(query.toLowerCase())
+        String(item[2]).toLowerCase().includes(query.toLowerCase())
       )
     : [];
 
@@ -58,7 +58,7 @@ export function SearchDialog({
               selectedResults.map((item) => (
                 <Link
                   key={item[6]}
-                  href={`/${(item[1] as string).toLowerCase()}/${item[6]}`}
+                  href={`/${String(item[1]).toLowerCase()}/${item[6]}`}
                 >
                   <CommandItem>
                     <Rocket className="mr-2 h-4 w-4" />

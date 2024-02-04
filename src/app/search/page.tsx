@@ -20,8 +20,7 @@ function CategoryPage() {
 
   const searchedCards = products.filter((cards) => {
     return (
-      search &&
-      (cards[2] as string).toLowerCase().includes(search.toLowerCase())
+      search && String(cards[2]).toLowerCase().includes(search.toLowerCase())
     );
   });
 
