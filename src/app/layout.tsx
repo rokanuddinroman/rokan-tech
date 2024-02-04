@@ -42,6 +42,10 @@ export default function RootLayout({
         <meta name="twitter:image:height" content="630" />
         <meta property="og:image:alt" content="About Rokan" />
         <meta name="twitter:image:alt" content="About Rokan" />
+        <meta
+          name="google-site-verification"
+          content="r-zX18hAHmz8SepExVEYtjDnGj24mqTSM42LF1OLskk"
+        />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
